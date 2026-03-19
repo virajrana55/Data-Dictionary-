@@ -1,0 +1,148 @@
+# Privacy Policy — Salesforce Data Model Chrome Extension
+
+**Effective date:** 2026-03-19
+
+This Privacy Policy describes how the **Salesforce Data Model** Chrome Extension (the "Extension") collects, uses, and protects information when you use it.
+
+---
+
+## 1. What the Extension Does
+
+The Extension is a **read-only** Salesforce metadata browser that helps administrators and developers inspect the data model of any Salesforce org they are signed into. It provides:
+
+- **Fields** — view field metadata (label, API name, type, required, unique, length, etc.) with clickable links to field setup pages.
+- **Record Types** — list record types with assigned picklist value inspection.
+- **Page Layouts** — list page layouts associated with an object.
+- **FlexiPages** — list Lightning pages linked to an object.
+- **Validation Rules** — view validation rule names, formulas, error messages, and active status.
+- **Field Sets** — view field set members and descriptions.
+- **Picklist Dependency Viewer** — visualize dependent picklist mappings in a matrix.
+- **Excel Export** — export all of the above into a multi-sheet `.xls` workbook.
+
+---
+
+## 2. Information the Extension Accesses
+
+### A. Salesforce Session Cookie (`sid`)
+
+The Extension reads the Salesforce session cookie named **`sid`** for the Salesforce domain you are currently signed into. This cookie is:
+
+- Used **only** to authenticate REST, Tooling, and Metadata API requests to **your own Salesforce org**.
+- **Never** persisted in extension storage — it is read from Chrome's cookie store at runtime and held in memory only for the duration of the active session.
+- **Never** transmitted to any server other than your Salesforce org.
+
+### B. Salesforce Org Metadata
+
+When you select an object, the Extension retrieves metadata through Salesforce APIs, including:
+
+- Object describe information (fields, record types, picklist values).
+- Tooling API metadata (`FieldDefinition`, `CustomField`, `EntityDefinition`, `FlexiPage`, `ValidationRule`, `Layout`, `FieldSet`).
+- User identity information (your name and email as returned by Salesforce) for display in the header.
+
+### C. Local Storage
+
+The Extension uses `chrome.storage.local` and `chrome.storage.session` to persist:
+
+- **Column configuration** — your preferred column order and visibility for each tab.
+- **Tab configuration** — which tabs are visible.
+- **Cached host/instance URL** — to reconnect to your org on subsequent opens (no tokens are stored).
+
+No Salesforce data, field values, or record content is persisted.
+
+---
+
+## 3. How the Extension Uses Information
+
+All accessed information is used **exclusively** to:
+
+- Render the metadata browser UI inside the extension popup.
+- Generate Excel export files that are downloaded directly to your device.
+- Open Salesforce setup pages in new browser tabs when you click a link.
+
+The Extension **does not** modify, create, update, or delete any data in your Salesforce org. It is strictly read-only.
+
+---
+
+## 4. Data Sharing and Selling
+
+- The Extension does **not** sell, rent, or trade your personal information or Salesforce data.
+- The Extension does **not** share data with third parties, analytics services, or advertising networks.
+- The Extension does **not** transmit any data to external servers controlled by the developer.
+
+The Extension communicates **only** with your Salesforce org domains:
+
+- `*.salesforce.com`
+- `*.force.com`
+- `*.salesforce-setup.com`
+- `*.visualforce.com`
+- `*.lightning.force.com`
+- `*.my.salesforce.com`
+
+---
+
+## 5. Data Storage and Retention
+
+- **Session tokens** are never written to extension storage. The `sid` cookie is read from Chrome's cookie store on demand.
+- **Metadata** fetched from Salesforce is held in memory only while the extension popup is open. Closing the popup discards all fetched metadata.
+- **Preferences** (column/tab configuration) are stored locally in your browser profile and can be reset from the Settings page at any time.
+
+---
+
+## 6. Permissions Justification
+
+| Permission | Reason |
+|---|---|
+| `cookies` | Read the Salesforce `sid` session cookie for API authentication. |
+| `storage` | Persist user preferences (column order, tab visibility). |
+| `tabs` | Open Salesforce setup pages and the extension popup in new tabs. |
+| `windows` | Not actively used (retained for compatibility). |
+| Host permissions (`*.salesforce.com`, etc.) | Required to make API requests to Salesforce endpoints. |
+
+---
+
+## 7. Security
+
+The Extension follows security best practices:
+
+- **Manifest V3** — uses a service worker with no persistent background page.
+- **Least-privilege permissions** — only the minimum required permissions are declared.
+- **No `web_accessible_resources`** — extension resources are not exposed to web pages.
+- **No `innerHTML`** — all DOM rendering uses safe APIs (`textContent`, `createElement`) to prevent XSS.
+- **No token persistence** — session tokens are never written to storage.
+
+You are responsible for:
+
+- Controlling access to your Chrome profile.
+- Ensuring appropriate Salesforce permissions are assigned to your user account.
+
+---
+
+## 8. Your Choices
+
+You can:
+
+- **Remove the Extension** at any time from `chrome://extensions`.
+- **Reset preferences** from the Settings page to clear stored column/tab configuration.
+- **Revoke Salesforce access** by logging out of Salesforce, which invalidates the session cookie.
+
+---
+
+## 9. Children's Privacy
+
+The Extension is not directed to children under 13 and is not intended for use by minors.
+
+---
+
+## 10. Changes to This Privacy Policy
+
+We may update this Privacy Policy from time to time. Changes will be reflected by updating the "Effective date" at the top of this document.
+
+---
+
+## 11. Contact
+
+If you have questions or concerns about this Privacy Policy, contact:
+
+**Developer:** Viraj Rana
+**Email:** viraj.rana55@gmail.com
+**GitHub:** [https://github.com/virajrana55](https://github.com/virajrana55)
